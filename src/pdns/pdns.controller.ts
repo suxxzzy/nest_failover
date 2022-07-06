@@ -1,13 +1,13 @@
-import { Controller, Get, Patch } from '@nestjs/common';
+import { Controller, Get, Patch, Query } from '@nestjs/common';
 import { PdnsService } from './pdns.service';
 
 @Controller('pdns')
 export class PdnsController {
   constructor(private readonly pdnsService: PdnsService) {}
-  //베가스 특정 url 조회
+  //KT IDC에 있는 베가스 특정 url 조회
   @Get('/singleurl')
-  singleurl() {
-    return this.pdnsService.singleurl();
+  singleurl(@Query('url') url: string) {
+    return this.pdnsService.singleurl(url);
   }
 
   //베가스 웹서버 전체에 있는 IP 주소, 상태 찾기
